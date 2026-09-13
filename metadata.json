@@ -1,0 +1,8 @@
+{
+  "name": "BETTERFIT LMS Admin Portal",
+  "description": "A comprehensive admin dashboard for managing learners, assessors, courses, and financial compliance for an educational academy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
