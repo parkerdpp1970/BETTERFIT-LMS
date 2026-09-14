@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, FileCheck, AlertTriangle, Users, ArrowRight, Clock, CheckCircle2, Layers, Scale, TrendingUp } from 'lucide-react';
+import Button from './ui/Button';
 
 const ModeratorDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const ModeratorDashboard: React.FC = () => {
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* 1. Welcome / IQA Header */}
-      <div className="bg-gradient-to-r from-[#10B981] to-[#06B6D4] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden">
+      <div className="bg-primary rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden">
           <div className="relative z-10">
               <div className="flex items-center mb-3">
                   <span className="bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider flex items-center mr-3">
@@ -64,14 +65,14 @@ const ModeratorDashboard: React.FC = () => {
           {/* Pending Reviews */}
           <div 
             onClick={() => navigate('/moderator/analytics/pending')}
-            className="card-standard p-6 flex flex-col justify-between cursor-pointer hover:border-[#F59E0B] transition-all group"
+            className="bf-card p-6 flex flex-col justify-between cursor-pointer hover:border-warning transition-all group"
           >
               <div className="flex justify-between items-start mb-4">
                   <div>
                       <p className="text-gray-500 font-medium text-xs uppercase tracking-wide">Pending Moderation</p>
-                      <h3 className="text-3xl font-bold text-[#1A1A2E] mt-1 group-hover:text-[#F59E0B] transition-colors">12</h3>
+                      <h3 className="text-3xl font-bold text-on-surface mt-1 group-hover:text-warning transition-colors">12</h3>
                   </div>
-                  <div className="p-3 bg-amber-50 rounded-lg text-[#F59E0B] group-hover:bg-amber-100 transition-colors">
+                  <div className="p-3 bg-amber-50 rounded-lg text-warning group-hover:bg-amber-100 transition-colors">
                       <Clock className="w-5 h-5" />
                   </div>
               </div>
@@ -83,12 +84,12 @@ const ModeratorDashboard: React.FC = () => {
           {/* Past Moderation (Passed) */}
           <div 
             onClick={() => navigate('/moderator/analytics/passed')}
-            className="card-standard p-6 flex flex-col justify-between cursor-pointer hover:border-[#10B981] transition-all group"
+            className="bf-card p-6 flex flex-col justify-between cursor-pointer hover:border-[#10B981] transition-all group"
           >
               <div className="flex justify-between items-start mb-4">
                   <div>
                       <p className="text-gray-500 font-medium text-xs uppercase tracking-wide">Passed Moderation</p>
-                      <h3 className="text-3xl font-bold text-[#1A1A2E] mt-1 group-hover:text-[#10B981] transition-colors">45</h3>
+                      <h3 className="text-3xl font-bold text-on-surface mt-1 group-hover:text-[#10B981] transition-colors">45</h3>
                   </div>
                   <div className="p-3 bg-emerald-50 rounded-lg text-[#10B981] group-hover:bg-emerald-100 transition-colors">
                       <CheckCircle2 className="w-5 h-5" />
@@ -102,18 +103,18 @@ const ModeratorDashboard: React.FC = () => {
           {/* Referred */}
           <div 
             onClick={() => navigate('/moderator/analytics/referred')}
-            className="card-standard p-6 flex flex-col justify-between cursor-pointer hover:border-[#DC2626] transition-all group"
+            className="bf-card p-6 flex flex-col justify-between cursor-pointer hover:border-error transition-all group"
           >
               <div className="flex justify-between items-start mb-4">
                   <div>
                       <p className="text-gray-500 font-medium text-xs uppercase tracking-wide">Referred</p>
-                      <h3 className="text-3xl font-bold text-[#1A1A2E] mt-1 group-hover:text-[#DC2626] transition-colors">8</h3>
+                      <h3 className="text-3xl font-bold text-on-surface mt-1 group-hover:text-error transition-colors">8</h3>
                   </div>
-                  <div className="p-3 bg-rose-50 rounded-lg text-[#DC2626] group-hover:bg-rose-100 transition-colors">
+                  <div className="p-3 bg-rose-50 rounded-lg text-error group-hover:bg-rose-100 transition-colors">
                       <AlertTriangle className="w-5 h-5" />
                   </div>
               </div>
-              <div className="px-2.5 py-1 bg-rose-50 text-[#DC2626] border border-rose-200 text-xs font-semibold rounded-full w-fit">
+              <div className="px-2.5 py-1 bg-rose-50 text-error border border-rose-200 text-xs font-semibold rounded-full w-fit">
                   15% Referral Rate
               </div>
           </div>
@@ -121,7 +122,7 @@ const ModeratorDashboard: React.FC = () => {
           {/* Learners in Scope */}
           <div 
             onClick={() => navigate('/moderator/analytics/scope')}
-            className="card-standard p-6 flex flex-col justify-between cursor-pointer hover:border-[#06B6D4] transition-all group"
+            className="bf-card p-6 flex flex-col justify-between cursor-pointer hover:border-[#06B6D4] transition-all group"
           >
               <div className="flex justify-between items-start mb-4">
                   <div>
@@ -140,30 +141,24 @@ const ModeratorDashboard: React.FC = () => {
 
       {/* 3. Quick Actions Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="card-standard p-6 flex items-center justify-between">
+          <div className="bf-card p-6 flex items-center justify-between">
               <div>
-                  <h3 className="text-base font-semibold text-[#1A1A2E]">Standardization Meetings</h3>
+                  <h3 className="text-base font-semibold text-on-surface">Standardization Meetings</h3>
                   <p className="text-xs text-gray-500 mt-0.5">Schedule reviews and maintain consistency.</p>
               </div>
-              <button 
-                onClick={() => navigate('/moderator/standardization')}
-                className="btn-secondary flex items-center text-xs"
-              >
-                  <Scale className="w-4 h-4 mr-2 text-[#7C3AED]" /> Manage Events
-              </button>
+              <Button variant="outlined" size="sm" icon={Scale} onClick={() => navigate('/moderator/standardization')}>
+                  Manage Events
+              </Button>
           </div>
           
-          <div className="card-standard p-6 flex items-center justify-between">
+          <div className="bf-card p-6 flex items-center justify-between">
               <div>
-                  <h3 className="text-base font-semibold text-[#1A1A2E]">Generate Reports</h3>
+                  <h3 className="text-base font-semibold text-on-surface">Generate Reports</h3>
                   <p className="text-xs text-gray-500 mt-0.5">Build sampling plans based on cohort & risk.</p>
               </div>
-              <button 
-                  onClick={() => navigate('/moderator/generate-report')}
-                  className="btn-primary flex items-center text-xs"
-              >
-                  <FileCheck className="w-4 h-4 mr-2" /> Generate
-              </button>
+              <Button size="sm" icon={FileCheck} onClick={() => navigate('/moderator/generate-report')}>
+                  Generate
+              </Button>
           </div>
       </div>
 
@@ -171,7 +166,7 @@ const ModeratorDashboard: React.FC = () => {
       <div className="space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h2 className="text-lg font-semibold text-[#1A1A2E] flex items-center">
+                <h2 className="text-lg font-semibold text-on-surface flex items-center">
                     Assessor Sampling Queue
                     <span className="ml-3 text-xs font-normal text-gray-500 bg-gray-100 border border-gray-200 px-2.5 py-0.5 rounded-full">
                         Sorted by: Oldest Submission
@@ -181,7 +176,7 @@ const ModeratorDashboard: React.FC = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="card-standard p-4 flex flex-col lg:flex-row gap-4 items-center">
+        <div className="bf-card p-4 flex flex-col lg:flex-row gap-4 items-center">
             {/* Search Assessor */}
             <div className="relative flex-1 w-full">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -189,7 +184,7 @@ const ModeratorDashboard: React.FC = () => {
                 </div>
                 <input
                     type="text"
-                    className="block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-xs leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-[#10B981] focus:ring-2 focus:ring-emerald-500/20 transition duration-150 ease-in-out text-[#1A1A2E]"
+                    className="block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-shape-md text-xs leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 ease-in-out text-on-surface"
                     placeholder="Search Assessor by name..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -203,7 +198,7 @@ const ModeratorDashboard: React.FC = () => {
                 </div>
                 <input
                     type="text"
-                    className="block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-xs leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-[#10B981] focus:ring-2 focus:ring-emerald-500/20 transition duration-150 ease-in-out text-[#1A1A2E]"
+                    className="block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-shape-md text-xs leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 ease-in-out text-on-surface"
                     placeholder="Search by Group (e.g. Group A)..."
                     value={searchGroup}
                     onChange={(e) => setSearchGroup(e.target.value)}
@@ -216,7 +211,7 @@ const ModeratorDashboard: React.FC = () => {
                 <select
                     value={filterRisk}
                     onChange={(e) => setFilterRisk(e.target.value)}
-                    className="block w-full py-2 px-3 border border-gray-200 bg-white rounded-lg text-xs focus:outline-none focus:border-[#10B981] focus:ring-2 focus:ring-emerald-500/20 text-[#1A1A2E] font-medium"
+                    className="block w-full py-2 px-3 border border-gray-200 bg-white rounded-shape-md text-xs focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface font-medium"
                 >
                     <option value="all">All Risk Levels</option>
                     <option value="High">High Risk</option>
@@ -227,7 +222,7 @@ const ModeratorDashboard: React.FC = () => {
         </div>
 
         {/* Table */}
-        <div className="card-standard overflow-hidden">
+        <div className="bf-card overflow-hidden">
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-100">
                     <thead className="bg-gray-50/70">
@@ -250,11 +245,11 @@ const ModeratorDashboard: React.FC = () => {
                             >
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="flex items-center">
-                                        <div className="h-9 w-9 rounded-lg bg-[#10B981] text-white flex items-center justify-center font-bold text-xs mr-3 group-hover:bg-[#059669] transition-colors shadow-sm">
+                                        <div className="h-9 w-9 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-xs mr-3 group-hover:bg-primary-deep transition-colors shadow-sm">
                                             {item.assessor.split(' ').map(n => n[0]).join('')}
                                         </div>
                                         <div>
-                                            <div className="text-sm font-semibold text-[#1A1A2E]">{item.assessor}</div>
+                                            <div className="text-sm font-semibold text-on-surface">{item.assessor}</div>
                                             <div className="text-xs text-gray-500">Assessor ID: #{1000 + parseInt(item.id)}</div>
                                         </div>
                                     </div>
@@ -276,7 +271,7 @@ const ModeratorDashboard: React.FC = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span className={`px-2.5 py-0.5 inline-flex text-xs font-semibold rounded-full ${
-                                        item.risk === 'High' ? 'bg-rose-50 text-[#DC2626] border border-rose-200' : 
+                                        item.risk === 'High' ? 'bg-rose-50 text-error border border-rose-200' : 
                                         item.risk === 'Medium' ? 'badge-warning' : 
                                         'badge-success'
                                     }`}>
@@ -291,30 +286,32 @@ const ModeratorDashboard: React.FC = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                      <span className={`text-xs font-semibold ${
-                                         item.status === 'Overdue' ? 'text-[#DC2626]' : 
-                                         item.status === 'Due Soon' ? 'text-[#F59E0B]' : 
+                                         item.status === 'Overdue' ? 'text-error' : 
+                                         item.status === 'Due Soon' ? 'text-warning' : 
                                          'text-[#059669]'
                                      }`}>
                                          {item.status}
                                      </span>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-xs font-medium">
-                                    <button 
+                                    <Button
+                                        variant="secondary"
+                                        size="sm"
+                                        trailingIcon={ArrowRight}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             navigate(`/moderator/sampling/${item.id}`);
                                         }}
-                                        className="btn-accent py-2 px-3.5 text-xs inline-flex items-center"
                                     >
-                                        Sample Now <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </button>
+                                        Sample Now
+                                    </Button>
                                 </td>
                             </tr>
                         ))}
                         {filteredPlan.length === 0 && (
                             <tr>
                                 <td colSpan={7} className="px-6 py-12 text-center text-gray-400">
-                                    <p className="font-semibold text-base text-[#1A1A2E]">No assessors found</p>
+                                    <p className="font-semibold text-base text-on-surface">No assessors found</p>
                                     <p className="text-xs text-gray-500 mt-1">Try adjusting your search terms or filters.</p>
                                 </td>
                             </tr>

@@ -1157,7 +1157,7 @@ ${isHighRisk ? 'URGENT: Initiate a 1-on-1 progress review within 48 hours to ide
                                     <ReferenceLine x={0} stroke="#000" />
                                     <Bar dataKey="days" name="Days Variance" radius={[0, 4, 4, 0]}>
                                         {SUBMISSION_VELOCITY_DATA.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.days < 0 ? '#ef4444' : entry.days === 0 ? '#f59e0b' : '#22c55e'} />
+                                            <Cell key={`cell-${index}`} fill={entry.days < 0 ? '#ef4444' : entry.days === 0 ? '#A85A00' : '#22c55e'} />
                                         ))}
                                     </Bar>
                                 </BarChart>

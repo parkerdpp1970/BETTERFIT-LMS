@@ -9,9 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 const MetricTooltip = ({ title, description }: { title: string, description: string }) => (
   <div className="group relative inline-block ml-1.5 cursor-help align-middle">
-    <Info className="w-3.5 h-3.5 text-slate-400 hover:text-[#06B6D4] transition-colors" />
+    <Info className="w-3.5 h-3.5 text-slate-400 hover:text-secondary transition-colors" />
     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-3 bg-slate-800 text-white text-[10px] rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] shadow-xl pointer-events-none">
-      <p className="font-bold mb-1 text-[#06B6D4] uppercase tracking-wider">{title}</p>
+      <p className="font-bold mb-1 text-secondary uppercase tracking-wider">{title}</p>
       <p className="leading-relaxed opacity-90">{description}</p>
       <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-800"></div>
     </div>
@@ -43,7 +43,7 @@ const AssessorAnalytics: React.FC = () => {
   const SUBMISSION_TIMING = [
       { name: '> 48h Early', value: 15, color: '#22c55e' }, // Low Risk
       { name: '24-48h Early', value: 35, color: '#3b82f6' }, // Good
-      { name: 'Deadline Day', value: 30, color: '#f59e0b' }, // Moderate Risk
+      { name: 'Deadline Day', value: 30, color: '#A85A00' }, // Moderate Risk
       { name: 'Late', value: 20, color: '#ef4444' }, // High Risk
   ];
 
@@ -54,7 +54,7 @@ const AssessorAnalytics: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
               <h1 className="text-3xl font-extrabold text-[#0c0c0d] flex items-center">
-                  <FileBarChart className="w-8 h-8 mr-3 text-[#06B6D4]" />
+                  <FileBarChart className="w-8 h-8 mr-3 text-secondary" />
                   Analytics
               </h1>
               <p className="text-slate-500 mt-1">
@@ -82,12 +82,12 @@ const AssessorAnalytics: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div 
             onClick={() => navigate('/assessor/learners?filter=high_engagement')}
-            className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative cursor-pointer hover:border-[#06B6D4] hover:shadow-md transition-all active:scale-[0.98] group"
+            className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative cursor-pointer hover:border-primary-fixed-dim hover:shadow-md transition-all active:scale-[0.98] group"
           >
               <div className="flex justify-between items-start">
                   <div>
                       <div className="flex items-center mb-1">
-                        <p className="text-xs font-bold text-slate-500 uppercase group-hover:text-[#06B6D4] transition-colors">Learner Engagement</p>
+                        <p className="text-xs font-bold text-slate-500 uppercase group-hover:text-secondary transition-colors">Learner Engagement</p>
                         <MetricTooltip 
                           title="Engagement" 
                           description="Measures the frequency and quality of student interactions with resources, assessments, and the platform over time." 
@@ -173,12 +173,12 @@ const AssessorAnalytics: React.FC = () => {
       <div className="flex flex-wrap gap-4 pt-2">
           <button 
               onClick={() => navigate('/assessor/results-by/learners')}
-              className="group flex items-center gap-3 bg-white px-6 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-[#06B6D4] hover:shadow-md transition-all active:scale-95"
+              className="group flex items-center gap-3 bg-white px-6 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-primary-fixed-dim hover:shadow-md transition-all active:scale-95"
           >
-              <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-[#06B6D4] group-hover:text-white transition-colors">
+              <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-secondary group-hover:text-white transition-colors">
                   <Users className="w-5 h-5" />
               </div>
-              <span className="font-bold text-slate-700 group-hover:text-[#06B6D4]">View by Learner</span>
+              <span className="font-bold text-slate-700 group-hover:text-secondary">View by Learner</span>
           </button>
           <button 
               onClick={() => navigate('/assessor/results-by/groups')}
@@ -252,7 +252,7 @@ const AssessorAnalytics: React.FC = () => {
                                                   <p>Engagement: <strong>{data.engagement}%</strong></p>
                                                   <p>Procrastination: <strong>{data.procrastination}%</strong></p>
                                               </div>
-                                              <p className="text-[10px] text-[#06B6D4] mt-2 italic">Click to drill down</p>
+                                              <p className="text-[10px] text-secondary mt-2 italic">Click to drill down</p>
                                           </div>
                                       );
                                   }
@@ -330,7 +330,7 @@ const AssessorAnalytics: React.FC = () => {
                       20% of submissions are late. The "At Risk" group typically submits assignments <span className="text-rose-500 font-bold">4 hours</span> before the deadline.
                   </p>
                   <div className="flex justify-center mt-2">
-                    <button className="text-xs text-[#06B6D4] font-bold hover:underline">Send "Early Bird" Nudge</button>
+                    <button className="text-xs text-secondary font-bold hover:underline">Send "Early Bird" Nudge</button>
                   </div>
               </div>
           </div>
@@ -342,7 +342,7 @@ const AssessorAnalytics: React.FC = () => {
               <h3 className="text-lg font-bold text-slate-900 flex items-center">
                   <AlertCircle className="w-5 h-5 mr-2 text-rose-500" /> Intervention Required
               </h3>
-              <button className="text-xs text-[#06B6D4] font-bold hover:underline">View All</button>
+              <button className="text-xs text-secondary font-bold hover:underline">View All</button>
           </div>
           <div className="space-y-3">
               <div className="flex items-center justify-between p-4 bg-rose-50/50 rounded-lg border border-rose-100 hover:bg-rose-100/50 transition-colors cursor-pointer" onClick={() => navigate('/assessor/learner/106')}>

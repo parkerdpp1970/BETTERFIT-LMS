@@ -79,12 +79,12 @@ const AssessorResultsBy: React.FC = () => {
             <div className="flex flex-wrap gap-4 mb-8">
                 <button 
                     onClick={() => navigate('/assessor/results-by/learners')}
-                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border transition-all active:scale-95 shadow-sm hover:shadow-md ${type === 'learners' ? 'bg-[#06B6D4] text-white border-[#06B6D4]' : 'bg-white text-slate-700 border-slate-200 hover:border-[#06B6D4]'}`}
+                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border transition-all active:scale-95 shadow-sm hover:shadow-md ${type === 'learners' ? 'bg-secondary text-white border-secondary' : 'bg-white text-slate-700 border-slate-200 hover:border-primary-fixed-dim'}`}
                 >
-                    <div className={`p-2 rounded-lg transition-colors ${type === 'learners' ? 'bg-white/20 text-white' : 'bg-blue-50 text-blue-600 group-hover:bg-[#06B6D4] group-hover:text-white'}`}>
+                    <div className={`p-2 rounded-lg transition-colors ${type === 'learners' ? 'bg-white/20 text-white' : 'bg-blue-50 text-blue-600 group-hover:bg-secondary group-hover:text-white'}`}>
                         <Users className="w-5 h-5" />
                     </div>
-                    <span className={`font-bold ${type === 'learners' ? 'text-white' : 'text-slate-700 group-hover:text-[#06B6D4]'}`}>View by Learner</span>
+                    <span className={`font-bold ${type === 'learners' ? 'text-white' : 'text-slate-700 group-hover:text-secondary'}`}>View by Learner</span>
                 </button>
                 <button 
                     onClick={() => navigate('/assessor/results-by/groups')}
@@ -134,7 +134,7 @@ const AssessorResultsBy: React.FC = () => {
                         placeholder="Search"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-[#06B6D4]/10 focus:border-[#06B6D4] transition-all text-slate-600 placeholder:text-slate-400"
+                        className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all text-slate-600 placeholder:text-slate-400"
                     />
                 </div>
                 <button className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-300 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm">
@@ -151,7 +151,7 @@ const AssessorResultsBy: React.FC = () => {
                             <th className="p-3 w-10 pt-4 pb-4">
                                 <div 
                                     onClick={toggleSelectAll}
-                                    className={`w-4 h-4 rounded border flex items-center justify-center cursor-pointer transition-all ${selectedItems.length === data.length ? 'bg-[#06B6D4] border-[#06B6D4]' : 'border-slate-300 bg-white hover:border-[#06B6D4]'}`}
+                                    className={`w-4 h-4 rounded border flex items-center justify-center cursor-pointer transition-all ${selectedItems.length === data.length ? 'bg-secondary border-secondary' : 'border-slate-300 bg-white hover:border-primary-fixed-dim'}`}
                                 >
                                     {selectedItems.length === data.length && <Check className="w-3 h-3 text-white" />}
                                 </div>
@@ -197,7 +197,7 @@ const AssessorResultsBy: React.FC = () => {
                                 <td className="p-3" onClick={(e) => e.stopPropagation()}>
                                     <div 
                                         onClick={() => toggleSelectItem(item.id)}
-                                        className={`w-4 h-4 rounded border flex items-center justify-center cursor-pointer transition-all ${selectedItems.includes(item.id) ? 'bg-[#06B6D4] border-[#06B6D4]' : 'border-slate-300 bg-white hover:border-[#06B6D4]'}`}
+                                        className={`w-4 h-4 rounded border flex items-center justify-center cursor-pointer transition-all ${selectedItems.includes(item.id) ? 'bg-secondary border-secondary' : 'border-slate-300 bg-white hover:border-primary-fixed-dim'}`}
                                     >
                                         {selectedItems.includes(item.id) && <Check className="w-3 h-3 text-white" />}
                                     </div>
@@ -219,7 +219,7 @@ const AssessorResultsBy: React.FC = () => {
                                             </div>
                                         )}
                                         <div className="min-w-0">
-                                            <div className="font-bold text-slate-900 group-hover:text-[#06B6D4] transition-colors text-[13px] truncate">{item.name}</div>
+                                            <div className="font-bold text-slate-900 group-hover:text-secondary transition-colors text-[13px] truncate">{item.name}</div>
                                             {type === 'assessments' && <div className="text-[9px] text-pink-500 font-bold uppercase tracking-tight truncate">{(item as any).unit}</div>}
                                         </div>
                                     </div>
@@ -252,9 +252,9 @@ const AssessorResultsBy: React.FC = () => {
                                         </td>
                                         <td className="p-3 text-center">
                                             <div className="flex flex-col items-center">
-                                                <span className="text-[11px] font-bold text-[#06B6D4]">{(item as any).avgProgress}%</span>
+                                                <span className="text-[11px] font-bold text-secondary">{(item as any).avgProgress}%</span>
                                                 <div className="w-16 bg-slate-100 rounded-full h-1 mt-1 overflow-hidden">
-                                                    <div className="bg-[#06B6D4] h-full" style={{ width: `${(item as any).avgProgress}%` }}></div>
+                                                    <div className="bg-primary h-full" style={{ width: `${(item as any).avgProgress}%` }}></div>
                                                 </div>
                                                 {(item as any).activeProgressing && (
                                                     <span className="text-[8px] text-slate-400 font-bold mt-1 uppercase">{(item as any).activeProgressing} active</span>
@@ -272,7 +272,7 @@ const AssessorResultsBy: React.FC = () => {
                                                 </button>
                                                 <button 
                                                     onClick={() => navigate(`/assessor/learners?${type === 'groups' ? 'groupId' : 'courseId'}=${item.id}`)}
-                                                    className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#06B6D4] hover:bg-[#08a1bb] text-white rounded-lg text-[10px] font-black uppercase transition-all active:scale-95 shadow-sm"
+                                                    className="flex items-center gap-1.5 px-2.5 py-1.5 bg-secondary hover:bg-black text-white rounded-full text-[10px] font-black uppercase transition-all active:scale-95 shadow-sm"
                                                 >
                                                     <Users className="w-3 h-3" />
                                                     Learners
@@ -289,7 +289,7 @@ const AssessorResultsBy: React.FC = () => {
                                 )}
 
                                 <td className="p-3 text-right">
-                                    <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-[#06B6D4] transition-colors inline-block" />
+                                    <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-secondary transition-colors inline-block" />
                                 </td>
                             </tr>
                         ))}
@@ -311,7 +311,7 @@ const AssessorResultsBy: React.FC = () => {
                         <ChevronLeft className="w-5 h-5" />
                     </button>
                     <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#06B6D4] text-[#06B6D4] font-bold">1</button>
+                        <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-secondary text-secondary font-bold">1</button>
                         <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100">2</button>
                     </div>
                     <button className="p-1 hover:bg-slate-100 rounded">

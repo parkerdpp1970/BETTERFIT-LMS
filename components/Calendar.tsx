@@ -3,6 +3,7 @@ import { MOCK_EVENTS, LEARNER_GROUPS } from '../constants';
 import { ChevronLeft, ChevronRight, MapPin, Clock, Plus, X, Users, Filter, Calendar as CalendarIcon, Edit2, Trash2 } from 'lucide-react';
 import { CalendarEvent } from '../types';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
+import Button from './ui/Button';
 
 const Calendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>(MOCK_EVENTS);
@@ -123,7 +124,7 @@ const Calendar: React.FC = () => {
     const calendarDays = [];
     // Empty cells for days before start of month
     for (let i = 0; i < startDay; i++) {
-        calendarDays.push(<div key={`empty-${i}`} className="min-h-[10rem] bg-[#F8FAFB]/50"></div>);
+        calendarDays.push(<div key={`empty-${i}`} className="min-h-[10rem] bg-surface/50"></div>);
     }
     
     for (let d = 1; d <= daysInMonth; d++) {
@@ -135,15 +136,15 @@ const Calendar: React.FC = () => {
             <div 
                 key={d} 
                 onClick={() => handleDayClick(d)}
-                className={`min-h-[10rem] p-2 transition-colors relative group overflow-hidden cursor-pointer flex flex-col ${isToday ? 'bg-emerald-50/40 ring-1 ring-inset ring-[#10B981]' : 'bg-white hover:bg-[#F8FAFB]'}`}
+                className={`min-h-[10rem] p-2 transition-colors relative group overflow-hidden cursor-pointer flex flex-col ${isToday ? 'bg-primary-container/40 ring-1 ring-inset ring-primary' : 'bg-white hover:bg-surface'}`}
             >
-                <div className={`text-right text-xs font-semibold mb-1.5 ${isToday ? 'text-[#10B981] font-bold' : 'text-[#1A1A2E]'}`}>
-                    {d} {isToday && <span className="text-[10px] uppercase font-semibold text-[#10B981] ml-1">(Today)</span>}
+                <div className={`text-right text-xs font-semibold mb-1.5 ${isToday ? 'text-primary font-bold' : 'text-on-surface'}`}>
+                    {d} {isToday && <span className="text-[10px] uppercase font-semibold text-primary ml-1">(Today)</span>}
                 </div>
                 
                 {/* Plus Icon on Hover */}
                 <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Plus className="w-3.5 h-3.5 text-gray-400 hover:text-[#10B981]" />
+                    <Plus className="w-3.5 h-3.5 text-gray-400 hover:text-primary" />
                 </div>
 
                 <div className="space-y-1 overflow-y-auto flex-1 custom-scrollbar">
@@ -168,12 +169,14 @@ const Calendar: React.FC = () => {
     <div className="space-y-6 relative h-full animate-in fade-in duration-300">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A2E]">Events & Activities</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-on-surface">Events & Activities</h1>
                 <p className="text-xs sm:text-sm text-gray-500 mt-1">Manage schedules, workshops, CPD, and submission deadlines.</p>
             </div>
             
             <div className="flex items-center space-x-3">
-                 <button 
+                 <Button
+                    size="sm"
+                    icon={Plus}
                     onClick={() => {
                         setCurrentEvent({
                             title: '', date: '2023-11-15', startTime: '', endTime: '', type: 'Class', location: '', description: '', targetGroups: []
@@ -181,13 +184,12 @@ const Calendar: React.FC = () => {
                         setModalMode('create');
                         setIsModalOpen(true);
                     }}
-                    className="btn-primary flex items-center text-xs py-2.5 px-4"
                  >
-                     <Plus className="w-4 h-4 mr-1.5" /> Add Event
-                 </button>
-                 <div className="flex items-center bg-white rounded-lg border border-[#E5E7EB] px-2 py-1 shadow-xs">
+                     Add Event
+                 </Button>
+                 <div className="flex items-center bg-white rounded-lg border border-outline-variant px-2 py-1 shadow-xs">
                     <button className="p-1.5 hover:bg-gray-100 rounded-md text-gray-600 transition-colors"><ChevronLeft className="w-4 h-4"/></button>
-                    <span className="text-xs font-semibold text-[#1A1A2E] px-2">November 2023</span>
+                    <span className="text-xs font-semibold text-on-surface px-2">November 2023</span>
                     <button className="p-1.5 hover:bg-gray-100 rounded-md text-gray-600 transition-colors"><ChevronRight className="w-4 h-4"/></button>
                  </div>
             </div>
@@ -195,15 +197,15 @@ const Calendar: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* MAIN CALENDAR GRID */}
-            <div className="lg:col-span-3 card-standard overflow-hidden flex flex-col p-0">
+            <div className="lg:col-span-3 bf-card overflow-hidden flex flex-col p-0">
                 {/* Days Header */}
-                <div className="grid grid-cols-7 bg-[#F8FAFB] gap-px border-b border-[#E5E7EB]">
+                <div className="grid grid-cols-7 bg-surface gap-px border-b border-outline-variant">
                     {days.map(day => (
                         <div key={day} className="py-2.5 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">{day}</div>
                     ))}
                 </div>
                 {/* Calendar Grid - Using gap-px for clean borders */}
-                <div className="grid grid-cols-7 bg-[#E5E7EB] gap-px flex-1">
+                <div className="grid grid-cols-7 bg-outline-variant gap-px flex-1">
                     {renderDays()}
                 </div>
             </div>
@@ -212,35 +214,35 @@ const Calendar: React.FC = () => {
             <div className="lg:col-span-1 space-y-6">
                 
                 {/* 1. Filter By Audience */}
-                <div className="card-standard p-4 sm:p-5">
-                    <h3 className="font-semibold text-[#1A1A2E] mb-3 flex items-center text-xs uppercase tracking-wider">
-                        <Filter className="w-4 h-4 mr-2 text-[#10B981]" /> Filter by Audience
+                <div className="bf-card p-4 sm:p-5">
+                    <h3 className="font-semibold text-on-surface mb-3 flex items-center text-xs uppercase tracking-wider">
+                        <Filter className="w-4 h-4 mr-2 text-primary" /> Filter by Audience
                     </h3>
                     <div className="space-y-1.5">
                         <button 
                             onClick={() => setSelectedGroup('all')}
-                            className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${selectedGroup === 'all' ? 'bg-emerald-50 text-[#10B981] font-semibold border border-emerald-200' : 'hover:bg-gray-50 text-gray-600'}`}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${selectedGroup === 'all' ? 'bg-primary-container text-on-primary-container font-semibold border border-primary-fixed-dim' : 'hover:bg-gray-50 text-gray-600'}`}
                         >
                             <span>All Events</span>
-                            {selectedGroup === 'all' && <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>}
+                            {selectedGroup === 'all' && <div className="w-2 h-2 bg-primary rounded-full"></div>}
                         </button>
                         {LEARNER_GROUPS.map(group => (
                             <button 
                                 key={group.id}
                                 onClick={() => setSelectedGroup(group.id)}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${selectedGroup === group.id ? 'bg-emerald-50 text-[#10B981] font-semibold border border-emerald-200' : 'hover:bg-gray-50 text-gray-600'}`}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${selectedGroup === group.id ? 'bg-primary-container text-on-primary-container font-semibold border border-primary-fixed-dim' : 'hover:bg-gray-50 text-gray-600'}`}
                             >
                                 <span className="truncate pr-2">{group.name}</span>
-                                {selectedGroup === group.id && <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>}
+                                {selectedGroup === group.id && <div className="w-2 h-2 bg-primary rounded-full"></div>}
                             </button>
                         ))}
                     </div>
                 </div>
 
                 {/* 2. Upcoming Events List */}
-                <div className="card-standard p-4 sm:p-5 max-h-[480px] overflow-y-auto">
-                    <h3 className="font-semibold text-[#1A1A2E] mb-3 flex items-center text-xs uppercase tracking-wider">
-                        <CalendarIcon className="w-4 h-4 mr-2 text-[#7C3AED]" /> Upcoming Events
+                <div className="bf-card p-4 sm:p-5 max-h-[480px] overflow-y-auto">
+                    <h3 className="font-semibold text-on-surface mb-3 flex items-center text-xs uppercase tracking-wider">
+                        <CalendarIcon className="w-4 h-4 mr-2 text-on-surface-variant" /> Upcoming Events
                     </h3>
                     
                     {filteredEvents.length === 0 ? (
@@ -251,13 +253,13 @@ const Calendar: React.FC = () => {
                                  <div 
                                     key={event.id} 
                                     onClick={(e) => handleEventClick(e, event)}
-                                    className="border-l-3 border-[#10B981] pl-3 py-1.5 group hover:bg-gray-50/70 rounded-r-md transition-colors cursor-pointer"
+                                    className="border-l-3 border-primary pl-3 py-1.5 group hover:bg-gray-50/70 rounded-r-md transition-colors cursor-pointer"
                                  >
                                      <div className="flex justify-between items-start">
                                          <span className="text-[10px] font-semibold px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full mb-1 inline-block">{event.type}</span>
-                                         <span className="text-[11px] text-[#10B981] font-semibold">{event.date}</span>
+                                         <span className="text-[11px] text-primary font-semibold">{event.date}</span>
                                      </div>
-                                     <h4 className="font-semibold text-xs text-[#1A1A2E] leading-tight mb-1 group-hover:text-[#10B981] transition-colors">{event.title}</h4>
+                                     <h4 className="font-semibold text-xs text-on-surface leading-tight mb-1 group-hover:text-primary transition-colors">{event.title}</h4>
                                      <div className="flex items-center text-[11px] text-gray-500 mb-0.5">
                                          <Clock className="w-3 h-3 mr-1 text-gray-400" /> {event.startTime} - {event.endTime}
                                      </div>
@@ -276,7 +278,7 @@ const Calendar: React.FC = () => {
         {isModalOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
                 <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden border border-gray-200">
-                    <div className="bg-[#10B981] px-6 py-4 flex justify-between items-center text-white">
+                    <div className="bg-tertiary px-6 py-4 flex justify-between items-center text-white">
                         <h2 className="text-base font-semibold text-white flex items-center">
                             {modalMode === 'create' ? <Plus className="w-5 h-5 mr-2" /> : <Edit2 className="w-5 h-5 mr-2" />}
                             {modalMode === 'create' ? 'Add New Event' : 'Edit Event Details'}
@@ -288,34 +290,34 @@ const Calendar: React.FC = () => {
                     
                     <form onSubmit={handleSaveEvent} className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
                         <div>
-                            <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Event Title <span className="text-[#DC2626]">*</span></label>
+                            <label className="block text-xs font-semibold text-on-surface mb-1.5">Event Title <span className="text-error">*</span></label>
                             <input 
                                 type="text" 
                                 required
                                 value={currentEvent.title}
                                 onChange={e => setCurrentEvent({...currentEvent, title: e.target.value})}
-                                className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white" 
+                                className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white" 
                                 placeholder="e.g. L3 Anatomy Workshop"
                             />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Date <span className="text-[#DC2626]">*</span></label>
+                                <label className="block text-xs font-semibold text-on-surface mb-1.5">Date <span className="text-error">*</span></label>
                                 <input 
                                     type="date" 
                                     required
                                     value={currentEvent.date}
                                     onChange={e => setCurrentEvent({...currentEvent, date: e.target.value})}
-                                    className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white" 
+                                    className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white" 
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Type</label>
+                                <label className="block text-xs font-semibold text-on-surface mb-1.5">Type</label>
                                 <select 
                                     value={currentEvent.type}
                                     onChange={e => setCurrentEvent({...currentEvent, type: e.target.value as any})}
-                                    className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white"
+                                    className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white"
                                 >
                                     <option>Activity</option>
                                     <option>Class</option>
@@ -329,29 +331,29 @@ const Calendar: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Start Time <span className="text-[#DC2626]">*</span></label>
+                                <label className="block text-xs font-semibold text-on-surface mb-1.5">Start Time <span className="text-error">*</span></label>
                                 <input 
                                     type="time" 
                                     required
                                     value={currentEvent.startTime}
                                     onChange={e => setCurrentEvent({...currentEvent, startTime: e.target.value})}
-                                    className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white" 
+                                    className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white" 
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">End Time <span className="text-[#DC2626]">*</span></label>
+                                <label className="block text-xs font-semibold text-on-surface mb-1.5">End Time <span className="text-error">*</span></label>
                                 <input 
                                     type="time" 
                                     required
                                     value={currentEvent.endTime}
                                     onChange={e => setCurrentEvent({...currentEvent, endTime: e.target.value})}
-                                    className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white" 
+                                    className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white" 
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Location <span className="text-[#DC2626]">*</span></label>
+                            <label className="block text-xs font-semibold text-on-surface mb-1.5">Location <span className="text-error">*</span></label>
                             <div className="relative">
                                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                                 <input 
@@ -359,26 +361,26 @@ const Calendar: React.FC = () => {
                                     required
                                     value={currentEvent.location}
                                     onChange={e => setCurrentEvent({...currentEvent, location: e.target.value})}
-                                    className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white" 
+                                    className="w-full border border-gray-200 rounded-shape-md pl-9 pr-3 py-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white" 
                                     placeholder="e.g. Room 301 or Zoom Link"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-xs font-semibold text-[#1A1A2E] mb-1.5">Description & Details</label>
+                            <label className="block text-xs font-semibold text-on-surface mb-1.5">Description & Details</label>
                             <textarea 
                                 rows={3}
                                 value={currentEvent.description}
                                 onChange={e => setCurrentEvent({...currentEvent, description: e.target.value})}
-                                className="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-[#1A1A2E] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] outline-none bg-white resize-none" 
+                                className="w-full border border-gray-200 rounded-shape-md p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white resize-none" 
                                 placeholder="Add agenda or requirements..."
                             ></textarea>
                         </div>
 
                         <div>
-                            <label className="block text-xs font-semibold text-[#1A1A2E] mb-2 flex items-center">
-                                <Users className="w-4 h-4 mr-1.5 text-[#7C3AED]" /> Target Audience <span className="text-[10px] font-normal normal-case ml-2 text-gray-400">(Click to select)</span>
+                            <label className="block text-xs font-semibold text-on-surface mb-2 flex items-center">
+                                <Users className="w-4 h-4 mr-1.5 text-on-surface-variant" /> Target Audience <span className="text-[10px] font-normal normal-case ml-2 text-gray-400">(Click to select)</span>
                             </label>
                             <div className="flex flex-wrap gap-2">
                                 {LEARNER_GROUPS.map(group => {
@@ -390,8 +392,8 @@ const Calendar: React.FC = () => {
                                             onClick={() => toggleGroupSelection(group.id)}
                                             className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                                                 isSelected 
-                                                ? 'bg-[#10B981] text-white border-[#10B981]' 
-                                                : 'bg-white text-gray-600 border-gray-200 hover:border-[#10B981]'
+                                                ? 'bg-primary text-white border-primary' 
+                                                : 'bg-white text-gray-600 border-gray-200 hover:border-primary-fixed-dim'
                                             }`}
                                         >
                                             {group.name}
@@ -406,25 +408,18 @@ const Calendar: React.FC = () => {
                                 <button
                                     type="button"
                                     onClick={handleDeleteClick}
-                                    className="px-4 py-2 border border-[#DC2626] text-[#DC2626] rounded-lg text-xs font-semibold hover:bg-rose-50 flex items-center transition-colors"
+                                    className="px-4 py-2 border border-error text-error rounded-lg text-xs font-semibold hover:bg-rose-50 flex items-center transition-colors"
                                 >
                                     <Trash2 className="w-4 h-4 mr-1.5" /> Delete
                                 </button>
                             )}
                             <div className="flex gap-3 ml-auto">
-                                <button 
-                                    type="button" 
-                                    onClick={() => setIsModalOpen(false)}
-                                    className="btn-secondary text-xs py-2 px-4"
-                                >
+                                <Button variant="outlined" size="sm" onClick={() => setIsModalOpen(false)}>
                                     Cancel
-                                </button>
-                                <button 
-                                    type="submit" 
-                                    className="btn-primary text-xs py-2 px-5"
-                                >
+                                </Button>
+                                <Button type="submit" size="sm" arrow={false}>
                                     {modalMode === 'create' ? 'Create Event' : 'Save Changes'}
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </form>
