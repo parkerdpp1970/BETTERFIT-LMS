@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Calendar as CalendarIcon, Download, FileText, X, CheckCircle, AlertTriangle, User, Briefcase, ChevronRight, FileCheck } from 'lucide-react';
+import Button from './ui/Button';
 
 interface IQAReport {
     id: string;
@@ -145,75 +146,72 @@ const IQAReportsHistory: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-[#1A1A2E]">IQA Report Archive</h1>
-                    <p className="text-[#6B7280] text-xs">Search and review past internal quality assurance reports.</p>
+                    <h1 className="text-2xl font-bold text-on-surface">IQA Report Archive</h1>
+                    <p className="text-on-surface-muted text-xs">Search and review past internal quality assurance reports.</p>
                 </div>
-                <button 
-                    onClick={downloadCSV}
-                    className="btn-primary flex items-center text-xs py-2 px-3.5"
-                >
-                    <Download className="w-3.5 h-3.5 mr-1.5" /> Export to CSV
-                </button>
+                <Button size="sm" icon={Download} arrow={false} onClick={downloadCSV}>
+                    Export to CSV
+                </Button>
             </div>
 
             {/* Search & Filter Bar */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-[#E5E7EB]">
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-outline-variant">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {/* Assessor Search */}
                     <div>
-                        <label className="block text-xs font-medium text-[#1A1A2E] uppercase mb-1">Assessor Name</label>
+                        <label className="block text-xs font-medium text-on-surface uppercase mb-1">Assessor Name</label>
                         <div className="relative">
                             <input 
                                 type="text" 
                                 value={assessorSearch}
                                 onChange={(e) => setAssessorSearch(e.target.value)}
-                                className="w-full pl-9 pr-3 py-2 border border-[#E5E7EB] rounded-md text-xs focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] text-[#1A1A2E]" 
+                                className="w-full pl-9 pr-3 py-2 border border-outline-variant rounded-shape-md text-xs focus:ring-1 focus:ring-primary focus:border-primary text-on-surface" 
                                 placeholder="Search assessor..."
                             />
-                            <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
+                            <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-muted" />
                         </div>
                     </div>
 
                     {/* Learner Search */}
                     <div>
-                        <label className="block text-xs font-medium text-[#1A1A2E] uppercase mb-1">Student / Learner</label>
+                        <label className="block text-xs font-medium text-on-surface uppercase mb-1">Student / Learner</label>
                         <div className="relative">
                             <input 
                                 type="text" 
                                 value={learnerSearch}
                                 onChange={(e) => setLearnerSearch(e.target.value)}
-                                className="w-full pl-9 pr-3 py-2 border border-[#E5E7EB] rounded-md text-xs focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] text-[#1A1A2E]" 
+                                className="w-full pl-9 pr-3 py-2 border border-outline-variant rounded-shape-md text-xs focus:ring-1 focus:ring-primary focus:border-primary text-on-surface" 
                                 placeholder="Search student..."
                             />
-                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
+                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-muted" />
                         </div>
                     </div>
 
                     {/* Date From */}
                     <div>
-                        <label className="block text-xs font-medium text-[#1A1A2E] uppercase mb-1">From Date</label>
+                        <label className="block text-xs font-medium text-on-surface uppercase mb-1">From Date</label>
                         <div className="relative">
                             <input 
                                 type="date" 
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="w-full pl-9 pr-3 py-2 border border-[#E5E7EB] rounded-md text-xs focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] text-[#1A1A2E]" 
+                                className="w-full pl-9 pr-3 py-2 border border-outline-variant rounded-shape-md text-xs focus:ring-1 focus:ring-primary focus:border-primary text-on-surface" 
                             />
-                            <CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280] pointer-events-none" />
+                            <CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-muted pointer-events-none" />
                         </div>
                     </div>
 
                     {/* Date To */}
                     <div>
-                        <label className="block text-xs font-medium text-[#1A1A2E] uppercase mb-1">To Date</label>
+                        <label className="block text-xs font-medium text-on-surface uppercase mb-1">To Date</label>
                         <div className="relative">
                             <input 
                                 type="date" 
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="w-full pl-9 pr-3 py-2 border border-[#E5E7EB] rounded-md text-xs focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] text-[#1A1A2E]" 
+                                className="w-full pl-9 pr-3 py-2 border border-outline-variant rounded-shape-md text-xs focus:ring-1 focus:ring-primary focus:border-primary text-on-surface" 
                             />
-                            <CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280] pointer-events-none" />
+                            <CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-muted pointer-events-none" />
                         </div>
                     </div>
                 </div>
@@ -223,7 +221,7 @@ const IQAReportsHistory: React.FC = () => {
                     <div className="mt-3 flex justify-end">
                         <button 
                             onClick={() => { setAssessorSearch(''); setLearnerSearch(''); setStartDate(''); setEndDate(''); }}
-                            className="text-xs text-[#DC2626] font-medium hover:underline"
+                            className="text-xs text-error font-medium hover:underline"
                         >
                             Clear All Filters
                         </button>
@@ -232,51 +230,51 @@ const IQAReportsHistory: React.FC = () => {
             </div>
 
             {/* Results Table */}
-            <div className="bg-white shadow-sm rounded-lg overflow-hidden border border-[#E5E7EB]">
+            <div className="bg-white shadow-sm rounded-lg overflow-hidden border border-outline-variant">
                 <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-[#E5E7EB]">
-                        <thead className="bg-[#F8FAFB]">
+                    <table className="min-w-full divide-y divide-outline-variant">
+                        <thead className="bg-surface">
                             <tr>
-                                <th className="px-5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Report ID</th>
-                                <th className="px-5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Date</th>
-                                <th className="px-5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Assessor</th>
-                                <th className="px-5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Learner</th>
-                                <th className="px-5 py-3 text-left text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Outcome</th>
-                                <th className="px-5 py-3 text-right text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Actions</th>
+                                <th className="px-5 py-3 text-left text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Report ID</th>
+                                <th className="px-5 py-3 text-left text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Date</th>
+                                <th className="px-5 py-3 text-left text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Assessor</th>
+                                <th className="px-5 py-3 text-left text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Learner</th>
+                                <th className="px-5 py-3 text-left text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Outcome</th>
+                                <th className="px-5 py-3 text-right text-xs font-semibold text-on-surface-muted uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-white divide-y divide-[#E5E7EB]">
+                        <tbody className="bg-white divide-y divide-outline-variant">
                             {filteredReports.length > 0 ? (
                                 filteredReports.map((report) => (
                                     <tr 
                                         key={report.id} 
                                         onClick={() => setSelectedReport(report)}
-                                        className="hover:bg-[#F0FDFA] transition-colors cursor-pointer group"
+                                        className="hover:bg-surface-container-low transition-colors cursor-pointer group"
                                     >
-                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs font-mono text-[#10B981] font-semibold">
+                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs font-mono text-primary font-semibold">
                                             {report.id}
                                         </td>
-                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs text-[#6B7280]">
+                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs text-on-surface-muted">
                                             {report.date}
                                         </td>
-                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs font-medium text-[#1A1A2E]">
+                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs font-medium text-on-surface">
                                             {report.assessor}
                                         </td>
-                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs text-[#6B7280]">
+                                        <td className="px-5 py-3.5 whitespace-nowrap text-xs text-on-surface-muted">
                                             {report.learner}
                                         </td>
                                         <td className="px-5 py-3.5 whitespace-nowrap">
                                             <span className={`px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded-full ${
                                                 report.decision === 'Pass' 
                                                 ? 'bg-[#D1FAE5] text-[#059669]' 
-                                                : 'bg-[#FEE2E2] text-[#DC2626]'
+                                                : 'bg-error-container text-error'
                                             }`}>
                                                 {report.decision === 'Pass' ? <CheckCircle className="w-3 h-3 mr-1" /> : <AlertTriangle className="w-3 h-3 mr-1" />}
                                                 {report.decision}
                                             </span>
                                         </td>
                                         <td className="px-5 py-3.5 whitespace-nowrap text-right text-xs font-medium">
-                                            <span className="text-[#10B981] font-semibold flex items-center justify-end group-hover:underline">
+                                            <span className="text-primary font-semibold flex items-center justify-end group-hover:underline">
                                                 View Report <ChevronRight className="w-3.5 h-3.5 ml-1" />
                                             </span>
                                         </td>
@@ -284,10 +282,10 @@ const IQAReportsHistory: React.FC = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={6} className="px-5 py-12 text-center text-[#6B7280]">
+                                    <td colSpan={6} className="px-5 py-12 text-center text-on-surface-muted">
                                         <div className="flex flex-col items-center justify-center">
-                                            <FileText className="w-10 h-10 text-[#9CA3AF] mb-2 opacity-50" />
-                                            <p className="font-semibold text-sm text-[#1A1A2E]">No reports found</p>
+                                            <FileText className="w-10 h-10 text-outline mb-2 opacity-50" />
+                                            <p className="font-semibold text-sm text-on-surface">No reports found</p>
                                             <p className="text-xs">Try adjusting your search criteria or date range.</p>
                                         </div>
                                     </td>
@@ -301,8 +299,8 @@ const IQAReportsHistory: React.FC = () => {
             {/* Read-Only Report Modal */}
             {selectedReport && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-                    <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden animate-in zoom-in duration-200 max-h-[90vh] flex flex-col border border-[#E5E7EB]">
-                        <div className="bg-[#10B981] px-5 py-3.5 flex justify-between items-center shrink-0">
+                    <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden animate-in zoom-in duration-200 max-h-[90vh] flex flex-col border border-outline-variant">
+                        <div className="bg-tertiary px-5 py-3.5 flex justify-between items-center shrink-0">
                             <h2 className="text-sm font-semibold text-white flex items-center">
                                 <FileCheck className="w-4 h-4 mr-2 text-white" /> IQA Report: {selectedReport.id}
                             </h2>
@@ -313,20 +311,20 @@ const IQAReportsHistory: React.FC = () => {
                         
                         <div className="p-6 overflow-y-auto flex-1">
                             {/* Meta Data */}
-                            <div className="bg-[#F8FAFB] p-3.5 rounded-lg border border-[#E5E7EB] grid grid-cols-2 gap-3 mb-5 text-xs">
-                                <div><span className="text-[#6B7280] font-medium">Date:</span> <span className="text-[#1A1A2E]">{selectedReport.date}</span></div>
-                                <div><span className="text-[#6B7280] font-medium">Type:</span> <span className="text-[#1A1A2E]">{selectedReport.type}</span></div>
-                                <div><span className="text-[#6B7280] font-medium">Assessor:</span> <span className="text-[#1A1A2E]">{selectedReport.assessor}</span></div>
-                                <div><span className="text-[#6B7280] font-medium">Learner:</span> <span className="text-[#1A1A2E]">{selectedReport.learner}</span></div>
-                                <div className="col-span-2"><span className="text-[#6B7280] font-medium">Unit/Module:</span> <span className="text-[#1A1A2E]">{selectedReport.unit}</span></div>
+                            <div className="bg-surface p-3.5 rounded-lg border border-outline-variant grid grid-cols-2 gap-3 mb-5 text-xs">
+                                <div><span className="text-on-surface-muted font-medium">Date:</span> <span className="text-on-surface">{selectedReport.date}</span></div>
+                                <div><span className="text-on-surface-muted font-medium">Type:</span> <span className="text-on-surface">{selectedReport.type}</span></div>
+                                <div><span className="text-on-surface-muted font-medium">Assessor:</span> <span className="text-on-surface">{selectedReport.assessor}</span></div>
+                                <div><span className="text-on-surface-muted font-medium">Learner:</span> <span className="text-on-surface">{selectedReport.learner}</span></div>
+                                <div className="col-span-2"><span className="text-on-surface-muted font-medium">Unit/Module:</span> <span className="text-on-surface">{selectedReport.unit}</span></div>
                             </div>
 
                             {/* VARS Check */}
                             <div className="mb-5">
-                                <h3 className="text-xs font-semibold text-[#1A1A2E] uppercase tracking-wider mb-2.5 border-b border-[#E5E7EB] pb-1">VARS Checks</h3>
+                                <h3 className="text-xs font-semibold text-on-surface uppercase tracking-wider mb-2.5 border-b border-outline-variant pb-1">VARS Checks</h3>
                                 <div className="grid grid-cols-4 gap-2">
                                     {Object.entries(selectedReport.vars).map(([key, value]) => (
-                                        <div key={key} className={`text-center p-2 rounded-md border ${value ? 'bg-[#D1FAE5] border-[#A7F3D0] text-[#059669]' : 'bg-[#FEE2E2] border-[#FECACA] text-[#DC2626]'}`}>
+                                        <div key={key} className={`text-center p-2 rounded-md border ${value ? 'bg-[#D1FAE5] border-[#A7F3D0] text-[#059669]' : 'bg-error-container border-[#FECACA] text-error'}`}>
                                             <div className="text-[10px] font-semibold uppercase mb-0.5">{key}</div>
                                             {value ? <CheckCircle className="w-4 h-4 mx-auto" /> : <AlertTriangle className="w-4 h-4 mx-auto" />}
                                         </div>
@@ -337,38 +335,38 @@ const IQAReportsHistory: React.FC = () => {
                             {/* Feedback */}
                             <div className="space-y-3.5 mb-5">
                                 <div>
-                                    <h3 className="text-xs font-semibold text-[#1A1A2E] uppercase tracking-wider mb-1.5">Strengths Identified</h3>
-                                    <div className="p-3 bg-[#F8FAFB] border border-[#E5E7EB] rounded-md text-xs text-[#1A1A2E]">
+                                    <h3 className="text-xs font-semibold text-on-surface uppercase tracking-wider mb-1.5">Strengths Identified</h3>
+                                    <div className="p-3 bg-surface border border-outline-variant rounded-md text-xs text-on-surface">
                                         {selectedReport.strengths}
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="text-xs font-semibold text-[#1A1A2E] uppercase tracking-wider mb-1.5">Areas for Improvement</h3>
-                                    <div className="p-3 bg-[#F8FAFB] border border-[#E5E7EB] rounded-md text-xs text-[#1A1A2E]">
+                                    <h3 className="text-xs font-semibold text-on-surface uppercase tracking-wider mb-1.5">Areas for Improvement</h3>
+                                    <div className="p-3 bg-surface border border-outline-variant rounded-md text-xs text-on-surface">
                                         {selectedReport.improvements}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Decision */}
-                            <div className={`p-3.5 rounded-lg border flex justify-between items-center ${selectedReport.decision === 'Pass' ? 'bg-[#D1FAE5] border-[#A7F3D0]' : 'bg-[#FEE2E2] border-[#FECACA]'}`}>
-                                <span className="font-semibold text-xs text-[#1A1A2E]">Final Decision</span>
-                                <span className={`font-bold text-sm ${selectedReport.decision === 'Pass' ? 'text-[#059669]' : 'text-[#DC2626]'}`}>
+                            <div className={`p-3.5 rounded-lg border flex justify-between items-center ${selectedReport.decision === 'Pass' ? 'bg-[#D1FAE5] border-[#A7F3D0]' : 'bg-error-container border-[#FECACA]'}`}>
+                                <span className="font-semibold text-xs text-on-surface">Final Decision</span>
+                                <span className={`font-bold text-sm ${selectedReport.decision === 'Pass' ? 'text-[#059669]' : 'text-error'}`}>
                                     {selectedReport.decision.toUpperCase()}
                                 </span>
                             </div>
                         </div>
 
-                        <div className="p-3.5 border-t border-[#E5E7EB] bg-[#F8FAFB] flex justify-end gap-2.5 shrink-0">
+                        <div className="p-3.5 border-t border-outline-variant bg-surface flex justify-end gap-2.5 shrink-0">
                             <button 
                                 onClick={() => setSelectedReport(null)}
-                                className="px-3.5 py-2 border border-[#E5E7EB] bg-white text-[#1A1A2E] rounded-md font-medium text-xs hover:bg-[#F8FAFB] transition-colors"
+                                className="px-3.5 py-2 border border-outline-variant bg-white text-on-surface rounded-md font-medium text-xs hover:bg-surface transition-colors"
                             >
                                 Close
                             </button>
-                            <button className="btn-primary text-xs py-2 px-3.5 flex items-center">
-                                <Download className="w-3.5 h-3.5 mr-1.5" /> Download PDF
-                            </button>
+                            <Button size="sm" icon={Download} arrow={false}>
+                                Download PDF
+                            </Button>
                         </div>
                     </div>
                 </div>

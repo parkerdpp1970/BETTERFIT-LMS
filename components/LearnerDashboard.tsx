@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, Calendar as CalendarIcon, CheckCircle, Clock, BookOpen, ChevronRight, Award, Zap, AlertCircle, FileBarChart, User, FileCheck, ChevronLeft, Video, Bell, MessageSquare, Mail } from 'lucide-react';
+import Button from './ui/Button';
 
 // --- Default Mock Banners (Fallback) ---
 const DEFAULT_BANNERS = [
@@ -11,9 +12,9 @@ const DEFAULT_BANNERS = [
         title: "CONTINUOUS PROFESSIONAL DEVELOPMENT COURSES",
         subtitle: "Expand your expertise with our latest modules: Kettlebells, Suspension Training, and more.",
         cta: "View Courses",
-        bgOverlay: "bg-gradient-to-r from-[#1A1A2E]/90 via-[#1A1A2E]/60 to-transparent",
-        accentColor: "text-[#06B6D4]",
-        buttonStyle: "bg-[#06B6D4] text-white hover:bg-[#0891b2]"
+        bgOverlay: "bg-gradient-to-r from-secondary/90 via-secondary/60 to-transparent",
+        accentColor: "text-primary-fixed-dim",
+        buttonStyle: "bg-primary text-white hover:bg-primary-deep"
     },
     {
         id: 'default_2',
@@ -21,9 +22,9 @@ const DEFAULT_BANNERS = [
         title: "Book a 1-on-1 Tutorial with Your Tutor",
         subtitle: "Need help with Unit 6? Schedule a session today to review your practical progress.",
         cta: "Book Now",
-        bgOverlay: "bg-gradient-to-r from-[#10B981]/90 via-[#10B981]/60 to-transparent",
+        bgOverlay: "bg-gradient-to-r from-primary/90 via-primary/60 to-transparent",
         accentColor: "text-white",
-        buttonStyle: "bg-white text-[#10B981] hover:bg-[#F0FDFA]"
+        buttonStyle: "bg-white text-primary hover:bg-primary-container"
     },
     {
         id: 'default_3',
@@ -31,9 +32,9 @@ const DEFAULT_BANNERS = [
         title: "Special Offer: 50% Off CPD Workshops",
         subtitle: "Limited time offer on all Level 4 specialist courses. Upgrade your qualifications today.",
         cta: "Explore Workshops",
-        bgOverlay: "bg-gradient-to-r from-[#7C3AED]/90 via-[#7C3AED]/60 to-transparent",
-        accentColor: "text-[#D1FAE5]",
-        buttonStyle: "bg-[#10B981] text-white hover:bg-[#059669]"
+        bgOverlay: "bg-gradient-to-r from-tertiary/90 via-tertiary/60 to-transparent",
+        accentColor: "text-primary-fixed-dim",
+        buttonStyle: "bg-primary text-white hover:bg-primary-deep"
     }
 ];
 
@@ -233,66 +234,62 @@ const LearnerDashboard: React.FC = () => {
       </div>
 
       {/* 2. COMPACT WELCOME & CURRENT COURSE */}
-      <div className="bg-white rounded-lg shadow-sm border border-[#E5E7EB] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-outline-variant p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex-1">
-              <h1 className="text-2xl font-bold text-[#1A1A2E] mb-1">Hello, {learnerName} 👋</h1>
-              <p className="text-sm text-[#6B7280]">Ready to continue your learning journey?</p>
+              <h1 className="text-2xl font-bold text-on-surface mb-1">Hello, {learnerName} 👋</h1>
+              <p className="text-sm text-on-surface-muted">Ready to continue your learning journey?</p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto bg-[#F8FAFB] px-4 py-3 rounded-lg border border-[#E5E7EB]">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto bg-surface px-4 py-3 rounded-lg border border-outline-variant">
               <div className="min-w-[180px]">
                   <div className="flex justify-between text-xs font-medium mb-1.5">
-                      <span className="text-[#1A1A2E]">{currentCourse.title}</span>
-                      <span className="text-[#10B981] font-semibold">{currentCourse.progress}%</span>
+                      <span className="text-on-surface">{currentCourse.title}</span>
+                      <span className="text-primary font-semibold">{currentCourse.progress}%</span>
                   </div>
-                  <div className="w-full bg-[#E5E7EB] h-2 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#10B981] rounded-full" style={{ width: `${currentCourse.progress}%` }}></div>
+                  <div className="w-full bg-outline-variant h-2 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary rounded-full" style={{ width: `${currentCourse.progress}%` }}></div>
                   </div>
               </div>
-              <button 
-                onClick={() => navigate('/learner/lesson/1')}
-                className="btn-primary py-2 px-4 text-xs flex items-center justify-center"
-              >
-                  <Play className="w-3 h-3 mr-1.5 fill-current" />
+              <Button size="sm" icon={Play} onClick={() => navigate('/learner/lesson/1')}>
                   Resume
-              </button>
+              </Button>
           </div>
       </div>
 
       {/* 3. QUICK ACTIONS ROW */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <div 
-            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#10B981] hover:bg-[#F0FDFA] transition-all cursor-pointer group" 
+            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group" 
             onClick={() => navigate('/learner/my-courses')}
           >
-              <BookOpen className="w-6 h-6 text-[#10B981] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My Courses</span>
+              <BookOpen className="w-6 h-6 text-primary mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My Courses</span>
           </div>
-          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#059669] hover:bg-[#F0FDFA] transition-all cursor-pointer group">
-              <FileBarChart className="w-6 h-6 text-[#059669] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My Progress</span>
+          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group">
+              <FileBarChart className="w-6 h-6 text-primary mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My Progress</span>
           </div>
-          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#7C3AED] hover:bg-[#F0FDFA] transition-all cursor-pointer group">
-              <FileCheck className="w-6 h-6 text-[#7C3AED] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My Results</span>
+          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group">
+              <FileCheck className="w-6 h-6 text-on-surface-variant mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My Results</span>
           </div>
           <div 
-            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#F59E0B] hover:bg-[#F0FDFA] transition-all cursor-pointer group" 
+            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group" 
             onClick={() => navigate('/calendar')}
           >
-              <CalendarIcon className="w-6 h-6 text-[#F59E0B] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My Calendar</span>
+              <CalendarIcon className="w-6 h-6 text-warning mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My Calendar</span>
           </div>
-          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#06B6D4] hover:bg-[#F0FDFA] transition-all cursor-pointer group">
-              <Award className="w-6 h-6 text-[#06B6D4] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My CPD</span>
+          <div className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group">
+              <Award className="w-6 h-6 text-secondary mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My CPD</span>
           </div>
           <div 
-            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-[#E5E7EB] hover:border-[#10B981] hover:bg-[#F0FDFA] transition-all cursor-pointer group"
+            className="h-28 flex flex-col items-center justify-center text-center p-3 rounded-lg bg-white shadow-sm border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all cursor-pointer group"
             onClick={() => navigate('/learner/profile')}
           >
-              <User className="w-6 h-6 text-[#10B981] mx-auto mb-2 group-hover:scale-105 transition-transform" />
-              <span className="block font-medium text-[#1A1A2E] text-xs">My Profile</span>
+              <User className="w-6 h-6 text-primary mx-auto mb-2 group-hover:scale-105 transition-transform" />
+              <span className="block font-medium text-on-surface text-xs">My Profile</span>
           </div>
       </div>
 
@@ -302,42 +299,42 @@ const LearnerDashboard: React.FC = () => {
           {/* LEFT (2/3): Active Submissions & Notifications */}
           <div className="lg:col-span-2 space-y-6">
               
-              <div className="bg-white rounded-lg shadow-sm border border-[#E5E7EB] overflow-hidden h-full">
-                  <div className="p-4 border-b border-[#E5E7EB] flex justify-between items-center bg-[#F8FAFB]">
-                      <h2 className="text-base font-semibold text-[#1A1A2E] flex items-center">
-                          <Bell className="w-4 h-4 mr-2 text-[#10B981]" /> Recent Notifications
+              <div className="bg-white rounded-lg shadow-sm border border-outline-variant overflow-hidden h-full">
+                  <div className="p-4 border-b border-outline-variant flex justify-between items-center bg-surface">
+                      <h2 className="text-base font-semibold text-on-surface flex items-center">
+                          <Bell className="w-4 h-4 mr-2 text-primary" /> Recent Notifications
                       </h2>
                       <span className="badge-pending">{notifications.length} New</span>
                   </div>
                   
-                  <div className="divide-y divide-[#E5E7EB]">
+                  <div className="divide-y divide-outline-variant">
                       {notifications.map((item) => (
-                          <div key={item.id} className="p-4 hover:bg-[#F8FAFB] transition-colors flex items-start gap-3.5">
+                          <div key={item.id} className="p-4 hover:bg-surface transition-colors flex items-start gap-3.5">
                               <div className={`p-2.5 rounded-full shrink-0 ${
                                 item.type === 'result' ? 'bg-[#D1FAE5] text-[#059669]' :
-                                item.type === 'due_date' ? 'bg-[#FEF3C7] text-[#92400E]' :
+                                item.type === 'due_date' ? 'bg-warning-container text-on-warning-container' :
                                 item.type === 'feedback' ? 'bg-[#CFFAFE] text-[#0891b2]' :
-                                'bg-[#F3F4F6] text-[#6B7280]'
+                                'bg-[#F3F4F6] text-on-surface-muted'
                               }`}>
                                   <item.icon className="w-4 h-4" />
                               </div>
                               <div className="flex-1">
                                   <div className="flex justify-between items-start mb-1">
-                                      <h3 className="text-sm font-semibold text-[#1A1A2E]">{item.title}</h3>
-                                      <span className={`text-xs ${item.type === 'due_date' ? 'text-[#DC2626] font-medium' : 'text-[#6B7280]'}`}>
+                                      <h3 className="text-sm font-semibold text-on-surface">{item.title}</h3>
+                                      <span className={`text-xs ${item.type === 'due_date' ? 'text-error font-medium' : 'text-on-surface-muted'}`}>
                                           {item.time}
                                       </span>
                                   </div>
-                                  <p className="text-xs text-[#6B7280] mb-2 leading-relaxed">
+                                  <p className="text-xs text-on-surface-muted mb-2 leading-relaxed">
                                       {item.message}
                                   </p>
                                   
                                   <div className="flex items-center gap-3">
-                                      <button className="text-xs font-medium text-[#06B6D4] hover:text-[#10B981] flex items-center transition-colors">
+                                      <button className="text-xs font-medium text-secondary hover:text-primary flex items-center transition-colors">
                                           {item.action} <ChevronRight className="w-3 h-3 ml-1" />
                                       </button>
                                       {item.type === 'due_date' && (
-                                          <button className="text-xs font-medium text-[#7C3AED] hover:underline flex items-center transition-colors">
+                                          <button className="text-xs font-medium text-on-surface-variant hover:underline flex items-center transition-colors">
                                               <Zap className="w-3 h-3 mr-1" /> Get AI Assistance
                                           </button>
                                       )}
@@ -346,8 +343,8 @@ const LearnerDashboard: React.FC = () => {
                           </div>
                       ))}
                   </div>
-                  <div className="p-3 bg-[#F8FAFB] border-t border-[#E5E7EB] text-center">
-                      <button className="text-xs font-medium text-[#6B7280] hover:text-[#10B981]">View All Notifications</button>
+                  <div className="p-3 bg-surface border-t border-outline-variant text-center">
+                      <button className="text-xs font-medium text-on-surface-muted hover:text-primary">View All Notifications</button>
                   </div>
               </div>
 
@@ -357,16 +354,16 @@ const LearnerDashboard: React.FC = () => {
           <div className="space-y-6">
               
               {/* Calendar Widget */}
-              <div className="bg-white rounded-lg shadow-sm border border-[#E5E7EB] overflow-hidden">
-                  <div className="bg-white p-4 border-b border-[#E5E7EB]">
+              <div className="bg-white rounded-lg shadow-sm border border-outline-variant overflow-hidden">
+                  <div className="bg-white p-4 border-b border-outline-variant">
                       <div className="flex justify-between items-center mb-3">
-                          <h3 className="font-semibold text-sm text-[#1A1A2E]">{currentMonth}</h3>
+                          <h3 className="font-semibold text-sm text-on-surface">{currentMonth}</h3>
                           <div className="flex gap-1">
-                              <button className="p-1 hover:bg-[#F8FAFB] rounded text-[#6B7280]"><ChevronLeft className="w-4 h-4" /></button>
-                              <button className="p-1 hover:bg-[#F8FAFB] rounded text-[#6B7280]"><ChevronRight className="w-4 h-4" /></button>
+                              <button className="p-1 hover:bg-surface rounded text-on-surface-muted"><ChevronLeft className="w-4 h-4" /></button>
+                              <button className="p-1 hover:bg-surface rounded text-on-surface-muted"><ChevronRight className="w-4 h-4" /></button>
                           </div>
                       </div>
-                      <div className="grid grid-cols-7 text-center text-[11px] font-medium text-[#9CA3AF] mb-2">
+                      <div className="grid grid-cols-7 text-center text-[11px] font-medium text-outline mb-2">
                           <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
                       </div>
                       <div className="grid grid-cols-7 gap-y-1 text-center text-xs">
@@ -381,8 +378,8 @@ const LearnerDashboard: React.FC = () => {
                               return (
                                   <div key={day} className="flex flex-col items-center justify-center relative py-1 cursor-pointer">
                                       <div className={`w-7 h-7 flex items-center justify-center rounded-full text-xs transition-colors ${
-                                          isToday ? 'bg-[#10B981] text-white font-medium shadow-sm' : 
-                                          hasEvent ? 'hover:bg-[#F0FDFA] text-[#1A1A2E] font-medium' : 'text-[#6B7280] hover:bg-[#F8FAFB]'
+                                          isToday ? 'bg-primary text-white font-medium shadow-sm' : 
+                                          hasEvent ? 'hover:bg-surface-container-low text-on-surface font-medium' : 'text-on-surface-muted hover:bg-surface'
                                       }`}>
                                           {day}
                                       </div>
@@ -399,28 +396,28 @@ const LearnerDashboard: React.FC = () => {
                   </div>
                   
                   {/* Upcoming Events List */}
-                  <div className="p-4 bg-[#F8FAFB]">
-                      <h4 className="text-xs font-medium text-[#6B7280] uppercase tracking-wider mb-2.5">Upcoming Sessions</h4>
+                  <div className="p-4 bg-surface">
+                      <h4 className="text-xs font-medium text-on-surface-muted uppercase tracking-wider mb-2.5">Upcoming Sessions</h4>
                       <div className="space-y-2.5">
-                          <div className="flex gap-2.5 items-start p-2 hover:bg-white rounded-md transition-colors border border-transparent hover:border-[#E5E7EB]">
+                          <div className="flex gap-2.5 items-start p-2 hover:bg-white rounded-md transition-colors border border-transparent hover:border-outline-variant">
                               <div className="bg-[#CFFAFE] text-[#0891b2] p-2 rounded-md">
                                   <Video className="w-3.5 h-3.5" />
                               </div>
                               <div>
-                                  <p className="text-[10px] text-[#6B7280] font-medium uppercase">15 Nov • 10:00 AM</p>
-                                  <h5 className="text-xs font-semibold text-[#1A1A2E]">Tutorial: Practical Review</h5>
+                                  <p className="text-[10px] text-on-surface-muted font-medium uppercase">15 Nov • 10:00 AM</p>
+                                  <h5 className="text-xs font-semibold text-on-surface">Tutorial: Practical Review</h5>
                               </div>
                           </div>
-                          <div className="flex gap-2.5 items-start p-2 hover:bg-white rounded-md transition-colors border border-transparent hover:border-[#E5E7EB]">
-                              <div className="bg-[#FEF3C7] text-[#92400E] p-2 rounded-md">
+                          <div className="flex gap-2.5 items-start p-2 hover:bg-white rounded-md transition-colors border border-transparent hover:border-outline-variant">
+                              <div className="bg-warning-container text-on-warning-container p-2 rounded-md">
                                   <AlertCircle className="w-3.5 h-3.5" />
                               </div>
                               <div>
-                                  <p className="text-[10px] text-[#6B7280] font-medium uppercase">12 Nov • Deadline</p>
-                                  <h5 className="text-xs font-semibold text-[#1A1A2E]">Unit 6 Video Submission</h5>
+                                  <p className="text-[10px] text-on-surface-muted font-medium uppercase">12 Nov • Deadline</p>
+                                  <h5 className="text-xs font-semibold text-on-surface">Unit 6 Video Submission</h5>
                               </div>
                           </div>
-                          <button className="w-full text-center text-xs font-medium text-[#06B6D4] hover:text-[#10B981] pt-1">
+                          <button className="w-full text-center text-xs font-medium text-secondary hover:text-primary pt-1">
                               View Full Calendar
                           </button>
                       </div>

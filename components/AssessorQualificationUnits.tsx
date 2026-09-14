@@ -74,7 +74,7 @@ const AssessorQualificationUnits: React.FC = () => {
                             <div className="flex items-center gap-3 mt-1">
                                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{qual.code}</span>
                                 <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                                <span className="text-xs font-bold text-[#06B6D4] uppercase tracking-widest">{qual.units.length} Units</span>
+                                <span className="text-xs font-bold text-secondary uppercase tracking-widest">{qual.units.length} Units</span>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ const AssessorQualificationUnits: React.FC = () => {
                         <Users className="w-5 h-5" />
                         View Learners
                     </button>
-                    <button className="flex items-center gap-2 px-6 py-3 bg-[#06B6D4] text-white rounded-xl font-bold hover:bg-[#08a1bb] transition-all shadow-md">
+                    <button className="flex items-center gap-2 px-6 py-3 bg-secondary text-white rounded-full font-bold hover:bg-black transition-all shadow-md">
                         <Activity className="w-5 h-5" />
                         Group Analytics
                     </button>
@@ -103,10 +103,10 @@ const AssessorQualificationUnits: React.FC = () => {
                             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Average Progress</p>
                             <h3 className="text-3xl font-black text-slate-900">82%</h3>
                         </div>
-                        <Target className="w-6 h-6 text-[#06B6D4]" />
+                        <Target className="w-6 h-6 text-secondary" />
                     </div>
                     <div className="mt-4 w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                        <div className="bg-[#06B6D4] h-full" style={{ width: '82%' }}></div>
+                        <div className="bg-primary h-full" style={{ width: '82%' }}></div>
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
@@ -145,11 +145,11 @@ const AssessorQualificationUnits: React.FC = () => {
                             className="p-6 hover:bg-slate-50 transition-all group flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer"
                         >
                             <div className="flex items-start gap-4 flex-1">
-                                <div className="p-3 bg-slate-100 text-slate-500 rounded-xl group-hover:bg-[#06B6D4] group-hover:text-white transition-colors">
+                                <div className="p-3 bg-slate-100 text-slate-500 rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
                                     <FileText className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-900 group-hover:text-[#06B6D4] transition-colors">{unit.name}</h3>
+                                    <h3 className="font-bold text-slate-900 group-hover:text-secondary transition-colors">{unit.name}</h3>
                                     <div className="flex items-center gap-3 mt-1">
                                         <span className="text-[10px] font-bold text-slate-400 uppercase">{unit.code}</span>
                                         <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase flex items-center gap-1.5 ${
@@ -172,12 +172,12 @@ const AssessorQualificationUnits: React.FC = () => {
                                     <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Enrolled Status</span>
                                 </div>
                                 <div className="text-center min-w-[80px]">
-                                    <span className="block text-xs font-black text-[#06B6D4]">{unit.avgScore}</span>
+                                    <span className="block text-xs font-black text-secondary">{unit.avgScore}</span>
                                     <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Average Grade</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg group-hover:bg-[#06B6D4]/10 transition-colors">
-                                    <span className="text-[9px] font-black text-slate-500 group-hover:text-[#06B6D4] uppercase">View Learners</span>
-                                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#06B6D4]" />
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg group-hover:bg-secondary/10 transition-colors">
+                                    <span className="text-[9px] font-black text-slate-500 group-hover:text-secondary uppercase">View Learners</span>
+                                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-secondary" />
                                 </div>
                             </div>
                         </div>

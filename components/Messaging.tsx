@@ -222,7 +222,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
 
   const Avatar = ({ name, url, className = "w-10 h-10" }: { name: string, url?: string, className?: string }) => {
       return (
-          <div className={`${className} rounded-full bg-emerald-50 text-[#10B981] flex items-center justify-center font-semibold text-xs overflow-hidden flex-shrink-0 border border-emerald-100`}>
+          <div className={`${className} rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-semibold text-xs overflow-hidden flex-shrink-0 border border-primary-fixed-dim`}>
               {url ? (
                   <img src={url} alt={name} className="w-full h-full object-cover" />
               ) : (
@@ -244,17 +244,17 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
   };
 
   return (
-    <div className="flex h-full bg-white rounded-2xl shadow-sm overflow-hidden border border-[#E5E7EB] font-sans">
+    <div className="flex h-full bg-white rounded-2xl shadow-sm overflow-hidden border border-outline-variant font-sans">
       
       {/* ----------------------------------------------------------------------------------
           LEFT SIDEBAR (Chat List)
       ---------------------------------------------------------------------------------- */}
-      <div className="w-full md:w-[350px] lg:w-[380px] flex flex-col border-r border-[#E5E7EB] bg-white">
+      <div className="w-full md:w-[350px] lg:w-[380px] flex flex-col border-r border-outline-variant bg-white">
           
           {/* Sidebar Header */}
-          <div className="h-16 bg-[#F8FAFB] px-4 flex justify-between items-center shrink-0 border-b border-[#E5E7EB]">
+          <div className="h-16 bg-surface px-4 flex justify-between items-center shrink-0 border-b border-outline-variant">
               <div className="flex items-center">
-                  <div className="w-9 h-9 rounded-full bg-[#10B981] flex items-center justify-center text-white text-xs font-bold shadow-xs">
+                  <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold shadow-xs">
                       ME
                   </div>
               </div>
@@ -262,14 +262,14 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                   {onClose && (
                       <button 
                         onClick={onClose}
-                        className="p-2 hover:bg-rose-50 hover:text-[#DC2626] rounded-lg transition-colors text-gray-400" title="Close Messaging"
+                        className="p-2 hover:bg-rose-50 hover:text-error rounded-lg transition-colors text-gray-400" title="Close Messaging"
                       >
                           <X className="w-5 h-5" />
                       </button>
                   )}
                   <button 
                     onClick={() => setIsNewChatOpen(true)}
-                    className="p-2 hover:bg-emerald-50 hover:text-[#10B981] rounded-lg transition-colors" title="New Chat"
+                    className="p-2 hover:bg-primary-container hover:text-primary rounded-lg transition-colors" title="New Chat"
                   >
                       <PenTool className="w-5 h-5" />
                   </button>
@@ -280,14 +280,14 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
           </div>
 
           {/* Search Bar */}
-          <div className="p-3 border-b border-[#E5E7EB] bg-white">
+          <div className="p-3 border-b border-outline-variant bg-white">
               <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <Search className="h-4 w-4 text-gray-400" />
                   </div>
                   <input
                       type="text"
-                      className="block w-full pl-9 pr-3 py-2 bg-[#F8FAFB] border border-[#E5E7EB] rounded-lg text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] placeholder-gray-400 text-[#1A1A2E] outline-none"
+                      className="block w-full pl-9 pr-3 py-2 bg-surface border border-outline-variant rounded-shape-md text-xs focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder-gray-400 text-on-surface outline-none"
                       placeholder="Search conversations..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -296,11 +296,11 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
           </div>
 
           {/* Filter Chips */}
-          <div className="flex px-3 py-2 gap-1.5 overflow-x-auto border-b border-[#E5E7EB] scrollbar-hide bg-[#F8FAFB]/50">
-              <button className="px-3 py-1 rounded-full bg-[#10B981] text-white text-xs font-medium whitespace-nowrap shadow-xs">All</button>
-              <button className="px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Unread</button>
-              <button className="px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Favourites</button>
-              <button className="px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Groups</button>
+          <div className="flex px-3 py-2 gap-1.5 overflow-x-auto border-b border-outline-variant scrollbar-hide bg-surface/50">
+              <button className="px-3 py-1 rounded-full bg-primary text-white text-xs font-medium whitespace-nowrap shadow-xs">All</button>
+              <button className="px-3 py-1 rounded-full bg-white border border-outline-variant text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Unread</button>
+              <button className="px-3 py-1 rounded-full bg-white border border-outline-variant text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Favourites</button>
+              <button className="px-3 py-1 rounded-full bg-white border border-outline-variant text-gray-600 text-xs font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">Groups</button>
           </div>
 
           {/* Chat List */}
@@ -311,7 +311,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                   <div 
                       key={chat.id} 
                       onClick={() => setActiveChatId(chat.id)}
-                      className={`flex items-center px-4 py-3 cursor-pointer transition-colors hover:bg-[#F8FAFB] ${activeChatId === chat.id ? 'bg-[#F0FDFA] border-l-4 border-[#10B981]' : ''}`}
+                      className={`flex items-center px-4 py-3 cursor-pointer transition-colors hover:bg-surface ${activeChatId === chat.id ? 'bg-primary-container border-l-4 border-primary' : ''}`}
                   >
                       {/* Avatar */}
                       <div className="relative">
@@ -324,8 +324,8 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                       {/* Info */}
                       <div className="ml-3 flex-1 overflow-hidden">
                           <div className="flex justify-between items-baseline">
-                              <h3 className="text-xs font-semibold text-[#1A1A2E] truncate">{chat.name}</h3>
-                              <span className={`text-[11px] ${chat.unreadCount > 0 ? 'text-[#10B981] font-bold' : 'text-gray-400'}`}>
+                              <h3 className="text-xs font-semibold text-on-surface truncate">{chat.name}</h3>
+                              <span className={`text-[11px] ${chat.unreadCount > 0 ? 'text-primary font-bold' : 'text-gray-400'}`}>
                                   {chat.lastMessageTime}
                               </span>
                           </div>
@@ -334,7 +334,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                                   {chat.lastMessage}
                               </p>
                               {chat.unreadCount > 0 && (
-                                  <span className="bg-[#10B981] text-white text-[10px] font-bold px-1.5 min-w-[18px] h-4.5 rounded-full flex items-center justify-center">
+                                  <span className="bg-primary text-white text-[10px] font-bold px-1.5 min-w-[18px] h-4.5 rounded-full flex items-center justify-center">
                                       {chat.unreadCount}
                                   </span>
                               )}
@@ -348,15 +348,15 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
       {/* ----------------------------------------------------------------------------------
           RIGHT MAIN AREA (Conversation)
       ---------------------------------------------------------------------------------- */}
-      <div className="flex-1 flex flex-col bg-[#F8FAFB] relative">
+      <div className="flex-1 flex flex-col bg-surface relative">
           {activeChat ? (
               <>
                   {/* Chat Header */}
-                  <div className="h-16 bg-white px-5 flex justify-between items-center border-b border-[#E5E7EB] relative z-10">
+                  <div className="h-16 bg-white px-5 flex justify-between items-center border-b border-outline-variant relative z-10">
                       <div className="flex items-center cursor-pointer">
                           <Avatar name={activeChat.avatar || activeChat.name.substring(0,2)} className="w-10 h-10" />
                           <div className="ml-3">
-                              <h2 className="text-[#1A1A2E] font-semibold text-sm">{activeChat.name}</h2>
+                              <h2 className="text-on-surface font-semibold text-sm">{activeChat.name}</h2>
                               <p className="text-gray-400 text-xs flex items-center">
                                   {activeChat.type === 'group' ? 'Group conversation' : (
                                       <span className="flex items-center text-[#059669]">
@@ -368,19 +368,19 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                       </div>
                       <div className="flex items-center gap-3 text-gray-500">
                           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                              <Search className="w-4 h-4 cursor-pointer text-gray-500 hover:text-[#1A1A2E]" />
+                              <Search className="w-4 h-4 cursor-pointer text-gray-500 hover:text-on-surface" />
                           </button>
                           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                              <MoreVertical className="w-4 h-4 cursor-pointer text-gray-500 hover:text-[#1A1A2E]" />
+                              <MoreVertical className="w-4 h-4 cursor-pointer text-gray-500 hover:text-on-surface" />
                           </button>
                       </div>
                   </div>
 
                   {/* Messages Area */}
-                  <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 relative z-10 custom-scrollbar bg-[#F8FAFB]">
+                  <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 relative z-10 custom-scrollbar bg-surface">
                       {/* Date Separator */}
                       <div className="flex justify-center mb-4">
-                          <span className="bg-white text-gray-400 text-[11px] px-3 py-1 rounded-full border border-[#E5E7EB] font-medium shadow-xs">
+                          <span className="bg-white text-gray-400 text-[11px] px-3 py-1 rounded-full border border-outline-variant font-medium shadow-xs">
                               Today
                           </span>
                       </div>
@@ -393,16 +393,16 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                               <div 
                                   className={`max-w-[80%] md:max-w-[60%] relative px-4 py-2.5 rounded-xl shadow-xs text-xs leading-relaxed ${
                                       msg.isOwn 
-                                      ? 'bg-[#10B981] text-white rounded-tr-none' 
-                                      : 'bg-white text-[#1A1A2E] border border-[#E5E7EB] rounded-tl-none'
+                                      ? 'bg-primary text-white rounded-tr-none' 
+                                      : 'bg-white text-on-surface border border-outline-variant rounded-tl-none'
                                   }`}
                               >
                                   {!msg.isOwn && activeChat.type === 'group' && (
-                                      <div className="text-[10px] font-bold text-[#7C3AED] mb-1">
+                                      <div className="text-[10px] font-bold text-on-surface-variant mb-1">
                                           {msg.senderId === 'paul' ? 'Paul Tempo' : 'Other User'}
                                       </div>
                                   )}
-                                  <div className={`pr-10 whitespace-pre-wrap ${msg.isOwn ? 'text-white' : 'text-[#1A1A2E]'}`}>
+                                  <div className={`pr-10 whitespace-pre-wrap ${msg.isOwn ? 'text-white' : 'text-on-surface'}`}>
                                       {msg.text}
                                   </div>
                                   <div className="absolute bottom-1.5 right-2.5 flex items-center gap-1">
@@ -418,7 +418,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                   </div>
 
                   {/* Input Area */}
-                  <div className="bg-white px-4 py-3 flex items-center gap-2 relative z-10 border-t border-[#E5E7EB]">
+                  <div className="bg-white px-4 py-3 flex items-center gap-2 relative z-10 border-t border-outline-variant">
                       <div className="flex gap-1 text-gray-400">
                           <button type="button" className="p-2 hover:bg-gray-100 hover:text-gray-600 rounded-lg transition-colors">
                               <Smile className="w-5 h-5 cursor-pointer" />
@@ -434,12 +434,12 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                               value={messageInput}
                               onChange={(e) => setMessageInput(e.target.value)}
                               placeholder="Type a message..." 
-                              className="w-full py-2.5 px-4 rounded-lg border border-[#E5E7EB] focus:border-[#10B981] focus:ring-2 focus:ring-emerald-500/20 text-[#1A1A2E] placeholder-gray-400 bg-[#F8FAFB] text-xs outline-none transition-all"
+                              className="w-full py-2.5 px-4 rounded-shape-md border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface placeholder-gray-400 bg-surface text-xs outline-none transition-all"
                           />
                       </form>
 
                       {messageInput.trim() ? (
-                          <button onClick={handleSendMessage} className="p-2.5 bg-[#10B981] hover:bg-[#059669] text-white rounded-lg transition-colors shadow-xs">
+                          <button onClick={handleSendMessage} className="p-2.5 bg-primary hover:bg-primary-deep text-white rounded-full transition-colors shadow-xs">
                               <Send className="w-4 h-4" />
                           </button>
                       ) : (
@@ -451,16 +451,16 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
               </>
           ) : (
               // Empty State
-              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 bg-[#F8FAFB]">
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 bg-surface">
                   <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 border border-emerald-100">
-                      <Users className="w-10 h-10 text-[#10B981]" />
+                      <Users className="w-10 h-10 text-primary" />
                   </div>
-                  <h1 className="text-xl font-bold text-[#1A1A2E] mb-2">BetterFit Messages</h1>
+                  <h1 className="text-xl font-bold text-on-surface mb-2">BetterFit Messages</h1>
                   <p className="text-gray-500 text-xs max-w-sm leading-relaxed">
                       Connect with assessors, learners, and moderation teams seamlessly in real-time.
                   </p>
                   <div className="mt-6 flex items-center text-gray-400 text-xs">
-                      <Shield className="w-3.5 h-3.5 mr-1.5 text-[#10B981]" /> End-to-end encrypted messaging
+                      <Shield className="w-3.5 h-3.5 mr-1.5 text-primary" /> End-to-end encrypted messaging
                   </div>
               </div>
           )}
@@ -474,7 +474,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
               <div className="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden h-[80vh] flex flex-col animate-in fade-in duration-200 border border-gray-200">
                   
                   {/* Header */}
-                  <div className="bg-[#10B981] px-5 py-4 flex items-center text-white shrink-0">
+                  <div className="bg-tertiary px-5 py-4 flex items-center text-white shrink-0">
                       <button onClick={() => setIsNewChatOpen(false)} className="mr-3 p-1 hover:bg-white/10 rounded-lg transition-colors">
                           <ArrowLeft className="w-5 h-5 text-white" />
                       </button>
@@ -485,7 +485,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                   </div>
 
                   {/* Search */}
-                  <div className="p-3 border-b border-[#E5E7EB]">
+                  <div className="p-3 border-b border-outline-variant">
                       <div className="relative">
                           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                           <input 
@@ -493,7 +493,7 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                               placeholder="Search name or group..." 
                               value={newChatSearch}
                               onChange={(e) => setNewChatSearch(e.target.value)}
-                              className="w-full pl-9 pr-3 py-2 bg-[#F8FAFB] rounded-lg border border-[#E5E7EB] focus:ring-2 focus:ring-emerald-500/20 focus:border-[#10B981] text-xs outline-none"
+                              className="w-full pl-9 pr-3 py-2 bg-surface rounded-shape-md border border-outline-variant focus:ring-2 focus:ring-primary/20 focus:border-primary text-xs outline-none"
                           />
                       </div>
                   </div>
@@ -509,31 +509,31 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                                   <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center mr-3 group-hover:bg-emerald-100 transition-colors border border-emerald-100">
                                       <Users className="w-4 h-4 text-[#10B981]" />
                                   </div>
-                                  <span className="text-xs font-semibold text-[#1A1A2E]">All Users</span>
+                                  <span className="text-xs font-semibold text-on-surface">All Users</span>
                               </button>
                               <button onClick={() => startNewChat('Administrators', 'group', 'ADMIN')} className="w-full flex items-center p-2.5 hover:bg-gray-50 rounded-lg transition-colors text-left group">
                                   <div className="w-9 h-9 rounded-full bg-purple-50 flex items-center justify-center mr-3 group-hover:bg-purple-100 transition-colors border border-purple-100">
                                       <Shield className="w-4 h-4 text-[#7C3AED]" />
                                   </div>
-                                  <span className="text-xs font-semibold text-[#1A1A2E]">Administrators</span>
+                                  <span className="text-xs font-semibold text-on-surface">Administrators</span>
                               </button>
                               <button onClick={() => startNewChat('Assessors', 'group', 'ASSESSOR')} className="w-full flex items-center p-2.5 hover:bg-gray-50 rounded-lg transition-colors text-left group">
                                   <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center mr-3 group-hover:bg-emerald-100 transition-colors border border-emerald-100">
                                       <Briefcase className="w-4 h-4 text-[#10B981]" />
                                   </div>
-                                  <span className="text-xs font-semibold text-[#1A1A2E]">Assessors</span>
+                                  <span className="text-xs font-semibold text-on-surface">Assessors</span>
                               </button>
                               <button onClick={() => startNewChat('Moderators', 'group', 'MODERATOR')} className="w-full flex items-center p-2.5 hover:bg-gray-50 rounded-lg transition-colors text-left group">
                                   <div className="w-9 h-9 rounded-full bg-cyan-50 flex items-center justify-center mr-3 group-hover:bg-cyan-100 transition-colors border border-cyan-100">
                                       <FileCheck className="w-4 h-4 text-[#06B6D4]" />
                                   </div>
-                                  <span className="text-xs font-semibold text-[#1A1A2E]">Moderators</span>
+                                  <span className="text-xs font-semibold text-on-surface">Moderators</span>
                               </button>
                               <button onClick={() => startNewChat('Super Admins', 'group', 'SUPER_ADMIN')} className="w-full flex items-center p-2.5 hover:bg-gray-50 rounded-lg transition-colors text-left group">
                                   <div className="w-9 h-9 rounded-full bg-amber-50 flex items-center justify-center mr-3 group-hover:bg-amber-100 transition-colors border border-amber-100">
-                                      <Zap className="w-4 h-4 text-[#F59E0B]" />
+                                      <Zap className="w-4 h-4 text-warning" />
                                   </div>
-                                  <span className="text-xs font-semibold text-[#1A1A2E]">Super Admins</span>
+                                  <span className="text-xs font-semibold text-on-surface">Super Admins</span>
                               </button>
                           </div>
                       </div>
@@ -552,11 +552,11 @@ const Messaging: React.FC<MessagingProps> = ({ initialTargetName, onClose }) => 
                                       onClick={() => startNewChat(user.name, 'individual')}
                                       className="w-full flex items-center p-2.5 hover:bg-gray-50 rounded-lg transition-colors text-left group"
                                   >
-                                      <div className="w-9 h-9 rounded-full bg-emerald-50 text-[#10B981] flex items-center justify-center mr-3 overflow-hidden font-semibold text-xs border border-emerald-100 group-hover:border-[#10B981]">
+                                      <div className="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mr-3 overflow-hidden font-semibold text-xs border border-primary-fixed-dim group-hover:border-primary-fixed-dim">
                                           {user.avatar}
                                       </div>
                                       <div>
-                                          <span className="block font-semibold text-xs text-[#1A1A2E]">{user.name}</span>
+                                          <span className="block font-semibold text-xs text-on-surface">{user.name}</span>
                                           <span className="block text-[11px] text-gray-400">{user.role}</span>
                                       </div>
                                   </button>

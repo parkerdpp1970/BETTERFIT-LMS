@@ -51,7 +51,7 @@ const PendingModerationReport: React.FC = () => {
                   <ArrowLeft className="w-4 h-4 mr-1" /> Back to Analytics Center
               </button>
               <h1 className="text-3xl font-extrabold text-[#0c0c0d] flex items-center">
-                  <Clock className="w-8 h-8 mr-3 text-[#f59e0b]" />
+                  <Clock className="w-8 h-8 mr-3 text-warning" />
                   Pending Moderation Analysis
               </h1>
               <p className="text-[#6c6c6c] mt-1 ml-11 max-w-2xl">
@@ -78,15 +78,15 @@ const PendingModerationReport: React.FC = () => {
                       <AreaChart data={WAIT_TIME_TREND}>
                           <defs>
                               <linearGradient id="colorWait" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2}/>
-                                  <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
+                                  <stop offset="5%" stopColor="#A85A00" stopOpacity={0.2}/>
+                                  <stop offset="95%" stopColor="#A85A00" stopOpacity={0}/>
                               </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                           <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill: '#6c6c6c', fontSize: 12}} dy={10} />
                           <YAxis axisLine={false} tickLine={false} tick={{fill: '#6c6c6c', fontSize: 12}} />
                           <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                          <Area type="monotone" dataKey="days" stroke="#f59e0b" strokeWidth={3} fillOpacity={1} fill="url(#colorWait)" />
+                          <Area type="monotone" dataKey="days" stroke="#A85A00" strokeWidth={3} fillOpacity={1} fill="url(#colorWait)" />
                       </AreaChart>
                   </ResponsiveContainer>
               </div>
@@ -97,7 +97,7 @@ const PendingModerationReport: React.FC = () => {
               <div className="bg-white p-6 rounded-xl border border-[#afafaf]/50 shadow-sm flex flex-col justify-center h-[calc(50%-12px)]">
                   <p className="text-xs font-bold text-[#6c6c6c] uppercase mb-2">Current Avg. Wait</p>
                   <div className="flex items-baseline">
-                      <p className="text-5xl font-extrabold text-[#f59e0b]">3.0</p>
+                      <p className="text-5xl font-extrabold text-warning">3.0</p>
                       <span className="text-lg text-[#afafaf] font-medium ml-2">Days</span>
                   </div>
                   <div className="mt-4 text-xs font-bold text-red-500 flex items-center bg-red-50 px-3 py-2 rounded w-fit">
@@ -134,7 +134,7 @@ const PendingModerationReport: React.FC = () => {
                           placeholder="Search learner, assessor..." 
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
-                          className="w-full pl-9 pr-4 py-2 border border-[#afafaf] rounded-lg text-sm focus:ring-[#f59e0b] focus:border-[#f59e0b]"
+                          className="w-full pl-9 pr-4 py-2 border border-[#afafaf] rounded-lg text-sm focus:ring-warning focus:border-warning"
                       />
                       <Search className="w-4 h-4 text-[#afafaf] absolute left-3 top-1/2 -translate-y-1/2" />
                   </div>

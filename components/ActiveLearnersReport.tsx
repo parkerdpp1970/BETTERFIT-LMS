@@ -118,7 +118,7 @@ const LEARNING_HEATMAP = [
 const LEARNER_TYPE_DISTRIBUTION = [
     { name: 'Full Time', value: 35, color: '#01b3ef' },
     { name: 'Part Time', value: 20, color: '#6366f1' },
-    { name: 'Blended', value: 25, color: '#f59e0b' },
+    { name: 'Blended', value: 25, color: '#A85A00' },
     { name: 'Apprentice', value: 15, color: '#e14177' },
     { name: 'Cohort', value: 5, color: '#10b981' },
 ];
